@@ -1,0 +1,34 @@
+{
+  "name": "gcloud-functions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "functions start",
+    "deployAll": "npm run build && npm run deployRetrieveAll && npm run deployRetrieveByMonthAndYear && npm run deployRetrieveByYear && npm run deploySave",
+    "deployRetrieveAll": "functions deploy retrieveAll --trigger-http",
+    "deployRetrieveByMonthAndYear": "functions deploy retrieveByMonthAndYear --trigger-http",
+    "deployRetrieveByYear": "functions deploy retrieveByYear --trigger-http",
+    "deploySave": "functions deploy save --trigger-http",
+    "stop": "functions stop",
+    "forceKill": "functions kill",
+    "build": "babel src -d lib",
+    "test": "jest"
+  },
+  "author": "David Cabal",
+  "license": "MIT",
+  "dependencies": {
+    "@google-cloud/firestore": "^1.0.1",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "helmet": "^3.15.1",
+    "safe-buffer": "^5.1.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.3",
+    "@babel/preset-env": "^7.3.1",
+    "jest": "^24.1.0",
+    "supertest": "^3.4.2"
+  }
+}
