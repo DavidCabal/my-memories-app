@@ -1,4 +1,4 @@
-import { Component } from '@stencil/core';
+import { Component, State } from '@stencil/core';
 
 @Component({
   tag: 'app-home',
@@ -6,6 +6,18 @@ import { Component } from '@stencil/core';
 })
 
 export class AppHome {
+
+  @State() showAppAddMemory = false;
+  @State() showViewMemories = false;
+
+  showAppAddMemoryFn = () => {
+    this.showAppAddMemory = true;
+    this.showViewMemories = false;
+  };
+  showViewMemoriesFn = () => {
+    this.showAppAddMemory = false;
+    this.showViewMemories = true;
+  };
 
   render() {
     return [
@@ -16,8 +28,19 @@ export class AppHome {
       </ion-header>,
 
       <ion-content padding color="dark">
-        <ion-button expand="block">Add New Memory</ion-button>
-        <ion-button expand="block">View Memories</ion-button>
+        <ion-grid>
+          <ion-row justify-content-center>
+            <ion-col>
+              <ion-button size="small" onClick={() => this.showAppAddMemoryFn()}>Add Memory</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button size="small" onClick={() => this.showViewMemoriesFn()}>View Memories</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        {this.showAppAddMemory &&
+          <app-add-memory />
+        }
       </ion-content>
     ];
   }

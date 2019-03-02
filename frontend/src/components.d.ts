@@ -13,15 +13,11 @@ import 'ionicons';
 
 export namespace Components {
 
+  interface AppAddMemory {}
+  interface AppAddMemoryAttributes extends StencilHTMLAttributes {}
+
   interface AppHome {}
   interface AppHomeAttributes extends StencilHTMLAttributes {}
-
-  interface AppProfile {
-    'name': string;
-  }
-  interface AppProfileAttributes extends StencilHTMLAttributes {
-    'name'?: string;
-  }
 
   interface AppRoot {}
   interface AppRootAttributes extends StencilHTMLAttributes {}
@@ -29,28 +25,28 @@ export namespace Components {
 
 declare global {
   interface StencilElementInterfaces {
+    'AppAddMemory': Components.AppAddMemory;
     'AppHome': Components.AppHome;
-    'AppProfile': Components.AppProfile;
     'AppRoot': Components.AppRoot;
   }
 
   interface StencilIntrinsicElements {
+    'app-add-memory': Components.AppAddMemoryAttributes;
     'app-home': Components.AppHomeAttributes;
-    'app-profile': Components.AppProfileAttributes;
     'app-root': Components.AppRootAttributes;
   }
 
+
+  interface HTMLAppAddMemoryElement extends Components.AppAddMemory, HTMLStencilElement {}
+  var HTMLAppAddMemoryElement: {
+    prototype: HTMLAppAddMemoryElement;
+    new (): HTMLAppAddMemoryElement;
+  };
 
   interface HTMLAppHomeElement extends Components.AppHome, HTMLStencilElement {}
   var HTMLAppHomeElement: {
     prototype: HTMLAppHomeElement;
     new (): HTMLAppHomeElement;
-  };
-
-  interface HTMLAppProfileElement extends Components.AppProfile, HTMLStencilElement {}
-  var HTMLAppProfileElement: {
-    prototype: HTMLAppProfileElement;
-    new (): HTMLAppProfileElement;
   };
 
   interface HTMLAppRootElement extends Components.AppRoot, HTMLStencilElement {}
@@ -60,14 +56,14 @@ declare global {
   };
 
   interface HTMLElementTagNameMap {
+    'app-add-memory': HTMLAppAddMemoryElement
     'app-home': HTMLAppHomeElement
-    'app-profile': HTMLAppProfileElement
     'app-root': HTMLAppRootElement
   }
 
   interface ElementTagNameMap {
+    'app-add-memory': HTMLAppAddMemoryElement;
     'app-home': HTMLAppHomeElement;
-    'app-profile': HTMLAppProfileElement;
     'app-root': HTMLAppRootElement;
   }
 
