@@ -1,9 +1,11 @@
-import Firestore from '@google-cloud/firestore';
-import { firebaseConfig } from './db-config';
+import Admin from 'firebase-admin';
+import * as keyJson from './cendi-71685-b8759ff5d314.json';
 
-const firestore = new Firestore(firebaseConfig);
-
-const collection = firestore.collection('memories');
+Admin.initializeApp({
+  credential: Admin.credential.cert(keyJson)
+});
+var db = Admin.firestore();
+const collection = db.collection('memories');
 
 const saveMemory = (body) => {
   if (body.text == null) {
@@ -18,7 +20,8 @@ const saveMemory = (body) => {
   })
     .then(() => {
       return 200;
-    });
+    })
+    .catch(error => error);
 };
 
 const retrieveMemories = () => {
@@ -29,7 +32,8 @@ const retrieveMemories = () => {
         returnDocs.push(doc.data());
       });
       return returnDocs;
-    });
+    })
+    .catch(error => error);
 };
 
 const retrieveMemoriesByYear = (year) => {
@@ -40,7 +44,8 @@ const retrieveMemoriesByYear = (year) => {
         returnDocs.push(doc.data());
       });
       return returnDocs;
-    });
+    })
+    .catch(error => error);
 };
 
 const retrieveMemoriesByMonthAndYear = (month, year) => {
@@ -54,7 +59,8 @@ const retrieveMemoriesByMonthAndYear = (month, year) => {
         returnDocs.push(doc.data());
       });
       return returnDocs;
-    });
+    })
+    .catch(error => error);
 };
 
 export { saveMemory, retrieveMemories, retrieveMemoriesByYear, retrieveMemoriesByMonthAndYear };

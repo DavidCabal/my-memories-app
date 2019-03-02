@@ -6,10 +6,10 @@
   "scripts": {
     "start": "functions start",
     "deployAll": "npm run build && npm run deployRetrieveAll && npm run deployRetrieveByMonthAndYear && npm run deployRetrieveByYear && npm run deploySave",
-    "deployRetrieveAll": "functions deploy retrieveAll --trigger-http",
-    "deployRetrieveByMonthAndYear": "functions deploy retrieveByMonthAndYear --trigger-http",
-    "deployRetrieveByYear": "functions deploy retrieveByYear --trigger-http",
-    "deploySave": "functions deploy save --trigger-http",
+    "deployRetrieveAll": "functions deploy retrieveAll --trigger-http --local-path=~/Personal/MyMemories/gcloud-functions/lib/index.js",
+    "deployRetrieveByMonthAndYear": "functions deploy retrieveByMonthAndYear --trigger-http --local-path=~/Personal/MyMemories/gcloud-functions/lib/index.js",
+    "deployRetrieveByYear": "functions deploy retrieveByYear --trigger-http --local-path=~/Personal/MyMemories/gcloud-functions/lib/index.js",
+    "deploySave": "functions deploy save --trigger-http --local-path=~/Personal/MyMemories/gcloud-functions/lib/index.js",
     "stop": "functions stop",
     "forceKill": "functions kill",
     "build": "babel src -d lib",
@@ -18,10 +18,9 @@
   "author": "David Cabal",
   "license": "MIT",
   "dependencies": {
-    "@google-cloud/firestore": "^1.0.1",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "helmet": "^3.15.1",
+    "firebase-admin": "^7.0.0",
     "safe-buffer": "^5.1.2"
   },
   "devDependencies": {

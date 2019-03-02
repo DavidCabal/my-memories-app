@@ -7,3 +7,4 @@ lib
 node_modules
 package-lock.json
 src/apiKey.js
+src/database/cendi-71685-b8759ff5d314.json
