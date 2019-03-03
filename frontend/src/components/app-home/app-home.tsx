@@ -10,6 +10,8 @@ export class AppHome {
   @State() showAppAddMemory = false;
   @State() showViewMemories = false;
 
+  loadingIndicator;
+
   showAppAddMemoryFn = () => {
     this.showAppAddMemory = true;
     this.showViewMemories = false;
@@ -17,6 +19,44 @@ export class AppHome {
   showViewMemoriesFn = () => {
     this.showAppAddMemory = false;
     this.showViewMemories = true;
+  };
+
+  saveSuccess = () => {
+    this.showAppAddMemory = false;
+    this.showViewMemories = false;
+    this.saveSuccessToast();
+  }
+
+  saveSuccessToast = async () => {
+    const toastController = document.querySelector('ion-toast-controller');
+    await toastController.componentOnReady();
+  
+    const toast = await toastController.create({
+      message: 'Memory Saved',
+      showCloseButton: true,
+      position: 'middle',
+      closeButtonText: 'Dismiss',
+      duration: 3000
+    });
+    return await toast.present();
+  };
+
+  showLoadingIndicator = async (loadingMessage) => {
+    const loadingController = document.querySelector('ion-loading-controller');
+    await loadingController.componentOnReady();
+  
+    this.loadingIndicator = await loadingController.create({
+      message: loadingMessage,
+      duration: 8000,
+      animated: true,
+      spinner: "bubbles"
+    });
+  
+    await this.loadingIndicator.present();
+  };
+
+  hideLoadingIndicator = () => {
+    this.loadingIndicator.dismiss();
   };
 
   render() {
@@ -39,8 +79,14 @@ export class AppHome {
           </ion-row>
         </ion-grid>
         {this.showAppAddMemory &&
-          <app-add-memory />
+          <app-add-memory saveSuccessFn={this.saveSuccess} 
+          showLoading={this.showLoadingIndicator} hideLoading={this.hideLoadingIndicator}/>
         }
+        {this.showViewMemories &&
+          <app-get-memories showLoading={this.showLoadingIndicator} hideLoading={this.hideLoadingIndicator} />
+        }
+        <ion-toast-controller />
+        <ion-loading-controller />
       </ion-content>
     ];
   }

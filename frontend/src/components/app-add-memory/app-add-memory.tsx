@@ -1,4 +1,5 @@
-import { Component } from '@stencil/core';
+import { Component, Prop } from '@stencil/core';
+import { callApi } from '../../utils/fetchHelpers.js';
 
 @Component({
   tag: 'app-add-memory',
@@ -6,11 +7,22 @@ import { Component } from '@stencil/core';
 })
 
 export class AppAddMemory {
+  @Prop() saveSuccessFn;
+  @Prop() showLoading;
+  @Prop() hideLoading;
 
   memoryText = '';
 
+  showSuccessMessage = () => {
+    this.hideLoading();
+    this.saveSuccessFn();
+  };
+
   saveMemory = (memory) => {
-    console.log(memory);
+    this.showLoading("Saving Memory...");
+    callApi('INSERT THE URL FOR THE SAVE FUNCTION IN YOUR GC ACCOUNT', 'POST', {text: memory})
+      .then(() => this.showSuccessMessage())
+      .catch(error => console.log(error));
   };
 
   render() {

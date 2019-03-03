@@ -13,8 +13,25 @@ import 'ionicons';
 
 export namespace Components {
 
-  interface AppAddMemory {}
-  interface AppAddMemoryAttributes extends StencilHTMLAttributes {}
+  interface AppAddMemory {
+    'hideLoading': any;
+    'saveSuccessFn': any;
+    'showLoading': any;
+  }
+  interface AppAddMemoryAttributes extends StencilHTMLAttributes {
+    'hideLoading'?: any;
+    'saveSuccessFn'?: any;
+    'showLoading'?: any;
+  }
+
+  interface AppGetMemories {
+    'hideLoading': any;
+    'showLoading': any;
+  }
+  interface AppGetMemoriesAttributes extends StencilHTMLAttributes {
+    'hideLoading'?: any;
+    'showLoading'?: any;
+  }
 
   interface AppHome {}
   interface AppHomeAttributes extends StencilHTMLAttributes {}
@@ -26,12 +43,14 @@ export namespace Components {
 declare global {
   interface StencilElementInterfaces {
     'AppAddMemory': Components.AppAddMemory;
+    'AppGetMemories': Components.AppGetMemories;
     'AppHome': Components.AppHome;
     'AppRoot': Components.AppRoot;
   }
 
   interface StencilIntrinsicElements {
     'app-add-memory': Components.AppAddMemoryAttributes;
+    'app-get-memories': Components.AppGetMemoriesAttributes;
     'app-home': Components.AppHomeAttributes;
     'app-root': Components.AppRootAttributes;
   }
@@ -41,6 +60,12 @@ declare global {
   var HTMLAppAddMemoryElement: {
     prototype: HTMLAppAddMemoryElement;
     new (): HTMLAppAddMemoryElement;
+  };
+
+  interface HTMLAppGetMemoriesElement extends Components.AppGetMemories, HTMLStencilElement {}
+  var HTMLAppGetMemoriesElement: {
+    prototype: HTMLAppGetMemoriesElement;
+    new (): HTMLAppGetMemoriesElement;
   };
 
   interface HTMLAppHomeElement extends Components.AppHome, HTMLStencilElement {}
@@ -57,12 +82,14 @@ declare global {
 
   interface HTMLElementTagNameMap {
     'app-add-memory': HTMLAppAddMemoryElement
+    'app-get-memories': HTMLAppGetMemoriesElement
     'app-home': HTMLAppHomeElement
     'app-root': HTMLAppRootElement
   }
 
   interface ElementTagNameMap {
     'app-add-memory': HTMLAppAddMemoryElement;
+    'app-get-memories': HTMLAppGetMemoriesElement;
     'app-home': HTMLAppHomeElement;
     'app-root': HTMLAppRootElement;
   }
