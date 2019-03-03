@@ -20,8 +20,12 @@ export class AppAddMemory {
 
   saveMemory = (memory) => {
     this.showLoading("Saving Memory...");
-    callApi('INSERT THE URL FOR THE SAVE FUNCTION IN YOUR GC ACCOUNT', 'POST', {text: memory})
-      .then(() => this.showSuccessMessage())
+    callApi('INSERT THE URL FOR THE SAVE FUNCTION IN YOUR GC ACCOUNT', 'POST', { text: memory })
+      .then(response => {
+        if (response.status === 200) {
+          this.showSuccessMessage();
+        }
+      })
       .catch(error => console.log(error));
   };
 

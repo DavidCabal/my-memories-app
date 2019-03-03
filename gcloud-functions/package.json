@@ -12,12 +12,13 @@
     "deploySave": "functions deploy save --trigger-http --local-path=~/Personal/MyMemories/gcloud-functions/lib/index.js",
     "stop": "functions stop",
     "forceKill": "functions kill",
-    "build": "babel src -d lib",
+    "build": "babel src -d functions",
     "test": "jest"
   },
   "author": "David Cabal",
   "license": "MIT",
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "firebase-admin": "^7.0.0",

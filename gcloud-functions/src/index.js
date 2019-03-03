@@ -1,5 +1,5 @@
 'use strict';
-
+import 'babel-polyfill';
 import { apiKey } from './apiKey.js';
 import Buffer from 'safe-buffer';
 import * as Memories from './database/db.js';
@@ -17,6 +17,25 @@ const isOptionsRequest = (req, res) => {
     return true;
   } else {
     return false;
+  }
+};
+
+exports.login = (req, res) => {
+  res.set('Access-Control-Allow-Origin', "*");
+  if (!isOptionsRequest(req, res)) {
+    if (validated(req.get('x-api-key'))) {
+      Memories.login(req.query.login)
+        .then(response => {
+          if (response === true) {
+            res.status(200).send(response);
+          } else {
+            res.status(500).send('Success');
+          }
+        })
+        .catch(() => res.status(500).send('Success'));
+    } else {
+      res.status(500).send('Success');
+    }
   }
 };
 

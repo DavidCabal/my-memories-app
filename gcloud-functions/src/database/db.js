@@ -1,11 +1,16 @@
 import Admin from 'firebase-admin';
 import * as keyJson from './cendi-71685-b8759ff5d314.json';
+import { loginKey } from '../loginKey.js';
 
 Admin.initializeApp({
   credential: Admin.credential.cert(keyJson)
 });
 var db = Admin.firestore();
 const collection = db.collection('memories');
+
+const login = async (value) => {
+  return value === loginKey;
+};
 
 const saveMemory = (body) => {
   if (body.text == null) {
@@ -63,4 +68,4 @@ const retrieveMemoriesByMonthAndYear = (month, year) => {
     .catch(error => error);
 };
 
-export { saveMemory, retrieveMemories, retrieveMemoriesByYear, retrieveMemoriesByMonthAndYear };
+export { login, saveMemory, retrieveMemories, retrieveMemoriesByYear, retrieveMemoriesByMonthAndYear };

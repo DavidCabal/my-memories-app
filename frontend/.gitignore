@@ -3,6 +3,7 @@ dist/
 www/
 
 src/apiKey.js
+src/loginKey.js
 
 *~
 *.sw[mnpcod]
@@ -13,6 +14,9 @@ src/apiKey.js
 log.txt
 *.sublime-project
 *.sublime-workspace
+
+.firebaserc
+firebase.json
 
 .stencil/
 .idea/

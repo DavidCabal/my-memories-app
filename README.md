@@ -25,6 +25,7 @@ To Do:
    * functions deploy retrieveAll --trigger-http --local-path=~/Personal/MyMemories/gcloud-functions/lib/index.js
    * functions deploy retrieveByYear --trigger-http --local-path=~/Personal/MyMemories/gcloud-functions/lib/index.js
    * functions deploy save --trigger-http --local-path=~/Personal/MyMemories/gcloud-functions/lib/index.js
+   * functions deploy login --trigger-http --local-path=~/Personal/MyMemories/gcloud-functions/lib/index.js
   * To stop a local function do "functions delete {functionName}"
    * ex: functions delete retrieveAll
    * This will not delete any code. It will only remove the locally running function from the emulator.

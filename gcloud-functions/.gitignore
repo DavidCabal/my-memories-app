@@ -4,7 +4,9 @@ src/ssha-list
 src/ssha-sign
 src/database/db-config.js
 lib
+functions
 node_modules
 package-lock.json
 src/apiKey.js
+src/loginKey.js
 src/database/cendi-71685-b8759ff5d314.json
