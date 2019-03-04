@@ -9,7 +9,7 @@
  * login can be disabled if deployed privately (Raspberry Pi home server, etc)
   * to disable, set value to false on line 13 of frontend/src/components/app-home/app-home.tsx
 
-* User Steps:
+### User Steps:
 
  * generate Google Cloud json keyfile and store in root of src folder
   * update db.js to import this keyfile
