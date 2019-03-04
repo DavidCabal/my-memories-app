@@ -11,10 +11,12 @@
 
 ### User Steps:
 
- * generate Google Cloud json keyfile and store in root of src folder
+ * generate Firebase json keyfile and store in root of src folder
+  * [Instructions](https://firebase.google.com/docs/web/setup)
   * update db.js to import this keyfile
  * create apiKey.js in root of src folder that looks like the following
 ```export const apiKey = 'YOUR API KEY HERE';```
+  * [This site works well](https://www.uuidgenerator.net/)
  * ```npm install && npm run build``` from both the "frontend" and "gcloud-functions" folders
  * install firebase cli then run ```firebase init``` from inside the "frontend" folder to setup the firebase link
  * ```firebase deploy``` from inside the "frontend" folder
