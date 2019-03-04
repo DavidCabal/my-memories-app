@@ -4,10 +4,10 @@
 
 * Node backend using Google Cloud Functions
 * Frontend PWA built with StencilJS
- * deployable as static site
- * login key supported if frontend is deployed publicly 
- * login can be disabled if deployed privately (Raspberry Pi home server, etc)
-  * to disable, set value to false on line 13 of frontend/src/components/app-home/app-home.tsx
+  * deployable as static site
+  * login key supported if frontend is deployed publicly 
+  * login can be disabled if deployed privately (Raspberry Pi home server, etc)
+    * to disable, set value to false on line 13 of frontend/src/components/app-home/app-home.tsx
 
 ### User Steps:
 
