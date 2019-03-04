@@ -1,34 +1,26 @@
-# My Memories App (WIP)
+# My Memories App
 ---
 ### Open source project for easily saving memorable moments.
 
-Done:
-
 * Node backend using Google Cloud Functions
+* Frontend PWA built with StencilJS
+ * deployable as static site
+ * login key supported if frontend is deployed publicly 
+ * login can be disabled if deployed privately (Raspberry Pi home server, etc)
+  * to disable, set value to false on line 13 of frontend/src/components/app-home/app-home.tsx
 
-To Do:
+* User Steps:
 
-* Frontend
- * PWA built with StencilJS
- * deployable as static site to Google Cloud Hosting or to home server (Raspberry Pi, etc) via Docker
-
- User Steps (WIP):
-
- * generate Google Cloud projectID and keyfile
- * create/add api key
-
- Instructions (WIP)
- * Backend
-  * npm run start (to start the Google Cloud Functions emulator)
-  * npm run build (after any changes to the backend functions)
-  * To load a function in the local emulator, you must fire the command from within the "lib" folder
-   * functions deploy retrieveAll --trigger-http --local-path=~/Personal/MyMemories/gcloud-functions/lib/index.js
-   * functions deploy retrieveByYear --trigger-http --local-path=~/Personal/MyMemories/gcloud-functions/lib/index.js
-   * functions deploy save --trigger-http --local-path=~/Personal/MyMemories/gcloud-functions/lib/index.js
-   * functions deploy login --trigger-http --local-path=~/Personal/MyMemories/gcloud-functions/lib/index.js
-  * To stop a local function do "functions delete {functionName}"
-   * ex: functions delete retrieveAll
-   * This will not delete any code. It will only remove the locally running function from the emulator.
-  * npm run stop (to stop the functions emulator)
-  * npm run forceKill (to force stop the functions emulator if it's hung) 
+ * generate Google Cloud json keyfile and store in root of src folder
+  * update db.js to import this keyfile
+ * create apiKey.js in root of src folder that looks like the following
+```export const apiKey = 'YOUR API KEY HERE';```
+ * ```npm install && npm run build``` from both the "frontend" and "gcloud-functions" folders
+ * install firebase cli then run ```firebase init``` from inside the "frontend" folder to setup the firebase link
+ * ```firebase deploy``` from inside the "frontend" folder
+ * After deploying your frontend PWA, update index.js to reflect the correct URL for each ```Access-Control-Allow-Origin``` header
+ * install gcloud cli
+ * from inside gcloud-functions/functions folder run the following command for each function exported in gcloud-functions/src/index.js
+ ```gcloud functions deploy {FUNCTION NAME} --runtime nodejs6 --trigger-http```
+  * example: ```gcloud functions deploy retrieveAll --runtime nodejs6 --trigger-http```
     
