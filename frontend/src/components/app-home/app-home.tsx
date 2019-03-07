@@ -50,7 +50,7 @@ export class AppHome {
 
     this.loadingIndicator = await loadingController.create({
       message: loadingMessage,
-      duration: 8000,
+      duration: 5000,
       animated: true,
       spinner: "bubbles"
     });
@@ -58,8 +58,14 @@ export class AppHome {
     await this.loadingIndicator.present();
   };
 
-  hideLoadingIndicator = () => {
-    this.loadingIndicator.dismiss();
+  hideLoadingIndicator = (retry = 1) => {
+    if (this.loadingIndicator) {
+      this.loadingIndicator.dismiss();
+    } else if (retry > 0) {
+      setTimeout(() => {
+        this.hideLoadingIndicator(retry - 1);
+      }, 1000);
+    }
   };
 
   checkLogin = (value) => {
