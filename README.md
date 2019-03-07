@@ -18,6 +18,7 @@
 ```export const apiKey = 'YOUR API KEY HERE';```
    * [This site works well](https://www.uuidgenerator.net/)   
  * ```npm install && npm run build``` from root of "frontend" folder  
+ * Production build files will then be in the "www" folder. Deploy these wherever you'd like. (static host somewhere, Raspberry Pi server at home, etc)
 #### From "gcloud-functions" folder 
  * install firebase cli then run ```firebase init``` from inside the "frontend" folder to setup the firebase link
  * ```firebase deploy``` from inside the "frontend" folder
@@ -26,5 +27,5 @@
  * ```npm install && npm run build``` from root of "gcloud-functions" folder
  * from inside gcloud-functions/functions folder run the following command for each function exported in gcloud-functions/src/index.js
  ```gcloud functions deploy {FUNCTION NAME} --runtime nodejs6 --trigger-http```
-   * example: ```gcloud functions deploy retrieveAll --runtime nodejs6 --trigger-http```
+   * example: ```gcloud functions deploy retrieveAll --runtime nodejs6 --trigger-http```  
     
