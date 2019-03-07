@@ -16,14 +16,14 @@
    * update db.js to import this keyfile
  * create apiKey.js in root of src folder that looks like the following
 ```export const apiKey = 'YOUR API KEY HERE';```
-   * [This site works well](https://www.uuidgenerator.net/)
-#### From both the "Frontend" and "gcloud-functions" folders   
- * ```npm install && npm run build``` from both the "frontend" and "gcloud-functions" folders
+   * [This site works well](https://www.uuidgenerator.net/)   
+ * ```npm install && npm run build``` from root of "frontend" folder  
 #### From "gcloud-functions" folder 
  * install firebase cli then run ```firebase init``` from inside the "frontend" folder to setup the firebase link
  * ```firebase deploy``` from inside the "frontend" folder
  * After deploying your frontend PWA, update index.js to reflect the correct URL for each ```Access-Control-Allow-Origin``` header
- * install gcloud cli
+ * install gcloud cli   
+ * ```npm install && npm run build``` from root of "gcloud-functions" folder
  * from inside gcloud-functions/functions folder run the following command for each function exported in gcloud-functions/src/index.js
  ```gcloud functions deploy {FUNCTION NAME} --runtime nodejs6 --trigger-http```
    * example: ```gcloud functions deploy retrieveAll --runtime nodejs6 --trigger-http```
