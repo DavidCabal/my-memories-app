@@ -63,13 +63,18 @@ export class AppHome {
   };
 
   checkLogin = (value) => {
+    this.showLoadingIndicator("Validating...");
     callApi('INSERT YOUR LOGIN FUNCTION URL PLUS "?login=" AT THE END' + value, 'GET')
       .then(response => {
+        this.hideLoadingIndicator();
         if (response.status === 200) {
           this.loggedIn = true;
         }
       })
-      .catch(error => console.log(error));
+      .catch(error => {
+        this.hideLoadingIndicator();
+        console.log(error);
+      });
   };
 
   render() {
@@ -86,7 +91,7 @@ export class AppHome {
             <ion-row>
               <ion-col>
                 <ion-item>
-                  <ion-label position="floating">Login</ion-label>
+                  <ion-label position="stacked">Login</ion-label>
                   <ion-input type="password" onIonChange={ev => this.loginValue = ev.detail.value}></ion-input>
                 </ion-item>
                 <ion-button onClick={() => this.checkLogin(this.loginValue)}>Validate</ion-button>
@@ -113,10 +118,10 @@ export class AppHome {
             {this.showViewMemories &&
               <app-get-memories showLoading={this.showLoadingIndicator} hideLoading={this.hideLoadingIndicator} />
             }
-            <ion-toast-controller />
-            <ion-loading-controller />
           </div>
         }
+        <ion-toast-controller />
+        <ion-loading-controller />
       </ion-content>
     ];
   }

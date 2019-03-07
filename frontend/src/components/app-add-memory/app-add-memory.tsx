@@ -35,8 +35,8 @@ export class AppAddMemory {
         <ion-row>
           <ion-col>
             <ion-item>
-              <ion-label position="floating">add new memory here</ion-label>
-              <ion-input onIonChange={ev => this.memoryText = ev.detail.value}></ion-input>
+              <ion-label position="stacked">add new memory here</ion-label>
+              <ion-textarea onIonChange={ev => this.memoryText = ev.detail.value}></ion-textarea>
             </ion-item>
           </ion-col>
         </ion-row>
