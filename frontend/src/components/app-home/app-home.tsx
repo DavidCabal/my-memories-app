@@ -51,7 +51,7 @@ export class AppHome {
 
     this.loadingIndicator = await loadingController.create({
       message: loadingMessage,
-      duration: 5000,
+      duration: 8000,
       animated: true,
       spinner: "bubbles"
     });
