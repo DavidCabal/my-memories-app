@@ -1,5 +1,6 @@
 import { Component, State } from '@stencil/core';
 import { callApi } from '../../utils/fetchHelpers.js';
+import { loginUrl } from '../../constants.js';
 
 @Component({
   tag: 'app-home',
@@ -70,7 +71,7 @@ export class AppHome {
 
   checkLogin = (value) => {
     this.showLoadingIndicator("Validating...");
-    callApi('INSERT YOUR LOGIN FUNCTION URL PLUS "?login=" AT THE END' + value, 'GET')
+    callApi(loginUrl + value, 'GET')
       .then(response => {
         this.hideLoadingIndicator();
         if (response.status === 200) {

@@ -1,5 +1,6 @@
 import { Component, State, Prop } from '@stencil/core';
 import { callApi } from '../../utils/fetchHelpers.js';
+import { retrieveUrl } from '../../constants.js';
 
 @Component({
   tag: 'app-get-memories',
@@ -35,7 +36,7 @@ export class AppGetMemories {
   retrieve = () => {
     this.showLoading("Retrieving Memories...");
     const allOrByYear = this.specificYear == null ? 'retrieveAll' : ('retrieveByYear?year=' + this.specificYear);
-    callApi('INSERT YOUR GC ACCOUNT RETRIEVE FUNCTION URL MINUS THE LAST PATH SECTION' + allOrByYear, 'GET')
+    callApi(retrieveUrl + allOrByYear, 'GET')
       .then(response => response.json())
       .then(response => {
         this.hideLoading();

@@ -17,6 +17,8 @@
  * create apiKey.js in root of src folder that looks like the following
 ```export const apiKey = 'YOUR API KEY HERE';```
    * [This site works well](https://www.uuidgenerator.net/)   
+ * create constants.js with ```saveUrl```, ```loginUrl```, and ```retrieveUrl``` exported constants set to those urls
+   * the ```retrieveUrl``` should not include the last path section
  * ```npm install && npm run build``` from root of "frontend" folder  
  * Production build files will then be in the "www" folder. Deploy these wherever you'd like. (static host somewhere, Raspberry Pi server at home, etc)
 #### From "gcloud-functions" folder 

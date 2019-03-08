@@ -4,6 +4,7 @@ www/
 
 src/apiKey.js
 src/loginKey.js
+src/constants.js
 
 *~
 *.sw[mnpcod]

@@ -1,5 +1,6 @@
 import { Component, Prop } from '@stencil/core';
 import { callApi } from '../../utils/fetchHelpers.js';
+import { saveUrl } from '../../constants.js';
 
 @Component({
   tag: 'app-add-memory',
@@ -20,7 +21,7 @@ export class AppAddMemory {
 
   saveMemory = (memory) => {
     this.showLoading("Saving Memory...");
-    callApi('INSERT THE URL FOR THE SAVE FUNCTION IN YOUR GC ACCOUNT', 'POST', { text: memory })
+    callApi(saveUrl, 'POST', { text: memory })
       .then(response => {
         if (response.status === 200) {
           this.showSuccessMessage();
