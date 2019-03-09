@@ -3,6 +3,7 @@ import 'babel-polyfill';
 import { apiKey } from './apiKey.js';
 import Buffer from 'safe-buffer';
 import * as Memories from './database/db.js';
+import { corsHeader } from './constants.js';
 
 Buffer.Buffer;
 
@@ -21,7 +22,7 @@ const isOptionsRequest = (req, res) => {
 };
 
 exports.login = (req, res) => {
-  res.set('Access-Control-Allow-Origin', "*");
+  res.set('Access-Control-Allow-Origin', corsHeader);
   if (!isOptionsRequest(req, res)) {
     if (validated(req.get('x-api-key'))) {
       Memories.login(req.query.login)
@@ -40,7 +41,7 @@ exports.login = (req, res) => {
 };
 
 exports.retrieveAll = (req, res) => {
-  res.set('Access-Control-Allow-Origin', "*");
+  res.set('Access-Control-Allow-Origin', corsHeader);
   if (!isOptionsRequest(req, res)) {
     if (validated(req.get('x-api-key'))) {
       Memories.retrieveMemories()
@@ -53,7 +54,7 @@ exports.retrieveAll = (req, res) => {
 };
 
 exports.retrieveByMonthAndYear = (req, res) => {
-  res.set('Access-Control-Allow-Origin', "*");
+  res.set('Access-Control-Allow-Origin', corsHeader);
   if (!isOptionsRequest(req, res)) {
     if (validated(req.get('x-api-key'))) {
       Memories.retrieveMemoriesByMonthAndYear(req.query.month, req.query.year)
@@ -66,7 +67,7 @@ exports.retrieveByMonthAndYear = (req, res) => {
 };
 
 exports.retrieveByYear = (req, res) => {
-  res.set('Access-Control-Allow-Origin', "*");
+  res.set('Access-Control-Allow-Origin', corsHeader);
   if (!isOptionsRequest(req, res)) {
     if (validated(req.get('x-api-key'))) {
       Memories.retrieveMemoriesByYear(req.query.year)
@@ -78,8 +79,34 @@ exports.retrieveByYear = (req, res) => {
   }
 };
 
+exports.edit = (req, res) => {
+  res.set('Access-Control-Allow-Origin', corsHeader);
+  if (!isOptionsRequest(req, res)) {
+    if (validated(req.get('x-api-key'))) {
+      Memories.editMemory(req.body)
+        .then((status) => res.sendStatus(status))
+        .catch(error => res.send(error));
+    } else {
+      res.send('');
+    }
+  }
+};
+
+exports.deleteMemory = (req, res) => {
+  res.set('Access-Control-Allow-Origin', corsHeader);
+  if (!isOptionsRequest(req, res)) {
+    if (validated(req.get('x-api-key'))) {
+      Memories.deleteMemory(req.body)
+        .then((status) => res.sendStatus(status))
+        .catch(error => res.send(error));
+    } else {
+      res.send('');
+    }
+  }
+};
+
 exports.save = (req, res) => {
-  res.set('Access-Control-Allow-Origin', "*");
+  res.set('Access-Control-Allow-Origin', corsHeader);
   if (!isOptionsRequest(req, res)) {
     if (validated(req.get('x-api-key'))) {
       Memories.saveMemory(req.body)

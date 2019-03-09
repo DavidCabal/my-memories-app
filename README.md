@@ -21,6 +21,7 @@
    * the ```retrieveUrl``` should not include the last path section
  * ```npm install && npm run build``` from root of "frontend" folder  
  * Production build files will then be in the "www" folder. Deploy these wherever you'd like. (static host somewhere, Raspberry Pi server at home, etc)
+   * Example: ```cd www``` then ```firebase deploy```
 #### From "gcloud-functions" folder 
  * install firebase cli then run ```firebase init``` from inside the "frontend" folder to setup the firebase link
  * ```firebase deploy``` from inside the "frontend" folder

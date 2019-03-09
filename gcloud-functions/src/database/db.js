@@ -12,6 +12,24 @@ const login = async (value) => {
   return value === loginKey;
 };
 
+const deleteMemory = (body) => {
+  if (body.fullDate == null || body.fullDate === '') {
+    throw new Error("body cannot but null or empty");
+  }
+  return collection.doc(body.fullDate).delete()
+    .then(() => 200)
+    .catch(() => 500);
+};
+
+const editMemory = (body) => {
+  if (body.text == null) {
+    throw new Error("body cannot be null");
+  }
+  return collection.doc(body.fullDate).update({ text: body.text })
+    .then(() => 200)
+    .catch(() => 500);
+};
+
 const saveMemory = (body) => {
   if (body.text == null) {
     throw new Error("body cannot be null");
@@ -68,4 +86,7 @@ const retrieveMemoriesByMonthAndYear = (month, year) => {
     .catch(error => error);
 };
 
-export { login, saveMemory, retrieveMemories, retrieveMemoriesByYear, retrieveMemoriesByMonthAndYear };
+export {
+  login, saveMemory, retrieveMemories, retrieveMemoriesByYear,
+  retrieveMemoriesByMonthAndYear, editMemory, deleteMemory
+};

@@ -3,4 +3,5 @@ hosting.d3d3.cache
 .gcloudignore
 apiKey.js
 loginKey.js
+constants.js
 cendi-71685-b8759ff5d314.json
