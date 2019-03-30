@@ -1,6 +1,6 @@
 import { Component, State } from '@stencil/core';
 import { callApi } from '../../utils/fetchHelpers.js';
-import { loginUrl } from '../../constants.js';
+import * as urls from '../../constants.js';
 
 @Component({
   tag: 'app-home',
@@ -15,6 +15,13 @@ export class AppHome {
 
   loginValue = '';
   loadingIndicator;
+
+  componentWillLoad() {
+    callApi(urls.loginUrl, 'GET')
+      .catch(() => {
+        // do nothing
+      });
+  }
 
   showAppAddMemoryFn = () => {
     this.showAppAddMemory = true;
@@ -71,10 +78,11 @@ export class AppHome {
 
   checkLogin = (value) => {
     this.showLoadingIndicator("Validating...");
-    callApi(loginUrl + value, 'GET')
+    callApi(urls.loginUrl + value, 'GET')
       .then(response => {
         this.hideLoadingIndicator();
         if (response.status === 200) {
+          this.preheatEndpoints();
           this.loggedIn = true;
         }
       })
@@ -82,6 +90,21 @@ export class AppHome {
         this.hideLoadingIndicator();
         console.log(error);
       });
+  };
+
+  preheatEndpoints () {
+    const endpoints = [ 
+      { url: urls.saveUrl, callType: 'POST' }, 
+      { url: urls.retrieveUrl, callType: 'GET' }, 
+      { url: urls.editUrl, callType: 'POST' }, 
+      { url: urls.deleteUrl, callType: 'POST' }
+     ];
+    endpoints.forEach(url => {
+    callApi(url.url, url.callType, null, false)
+      .catch(() => {
+        // do nothing
+      });
+    });
   };
 
   render() {
